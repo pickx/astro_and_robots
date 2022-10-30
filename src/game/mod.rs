@@ -146,9 +146,12 @@ impl Game {
             }
         };
 
+        writeln!(stdout)?;
+        let offset_from_top = changes.len() + 2;
+
         for y in 0..rows {
-            let adjusted_y = y + self.walkthrough.len();
-            center_cursor(stdout, terminal_size, u16::try_from(adjusted_y)?)?;
+            let adjusted_y = u16::try_from(y + offset_from_top)?;
+            center_cursor(stdout, terminal_size, adjusted_y)?;
 
             for x in 0..cols {
                 let pos = Pos { x, y };
@@ -239,7 +242,9 @@ impl SolutionWalkthrough {
     }
 
     fn state(&self) -> &State {
-        &self.solution[self.current_step]
+        self.solution
+            .get(self.current_step)
+            .expect("indexing field is private")
     }
 
     pub fn len(&self) -> usize {
