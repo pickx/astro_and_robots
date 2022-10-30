@@ -1,0 +1,13 @@
+[package]
+name = "astro_and_robots"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = "4.0.18"
+color-eyre = "0.6.2"
+itertools = "0.10.3"
+nanorand = "0.7.0"
+pathfinding = "3.0.14"
+simple-grid = "2.1.1"
+termion = "2.0.1"
